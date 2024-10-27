@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://887idwibiwjp"]
+
+[ext_resource type="Script" path="res://Scripts/Ship/Attachments/GunBase.gd" id="1_p7l4n"]
+[ext_resource type="PackedScene" uid="uid://1uvwustco61e" path="res://Scenes/Cars/Attachments/RailGunBullet.tscn" id="2_jny8e"]
+[ext_resource type="Texture2D" uid="uid://dp8uiq5e7wb6w" path="res://Assets/Parts/RailgunAttachment.png" id="2_tj6cl"]
+[ext_resource type="AudioStream" uid="uid://tttjx6e27v01" path="res://Assets/Audio/LaserFire.wav" id="3_uibwx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iy105"]
+radius = 500.0
+
+[sub_resource type="Animation" id="Animation_ftypy"]
+resource_name = "FireAnim"
+
+[sub_resource type="Animation" id="Animation_i4mh3"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cunks"]
+_data = {
+"FireAnim": SubResource("Animation_ftypy"),
+"RESET": SubResource("Animation_i4mh3")
+}
+
+[node name="TurretGun" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_p7l4n")
+bulletScene = ExtResource("2_jny8e")
+fireSound = ExtResource("3_uibwx")
+
+[node name="Range" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iy105")
+
+[node name="Turret" type="Sprite2D" parent="."]
+z_index = 1
+rotation = 1.57079
+texture = ExtResource("2_tj6cl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Turret"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_cunks")
+}
+
+[node name="ShootingPoint" type="Marker2D" parent="Turret"]
+unique_name_in_owner = true
+position = Vector2(0.000144311, -23)
+rotation = -1.5708
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

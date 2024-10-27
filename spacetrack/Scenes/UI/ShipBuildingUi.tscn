@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://7ln8d3d37k1x"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ShipBuildingUI.gd" id="1_w1rat"]
+[ext_resource type="Theme" uid="uid://0pi5paux4ir4" path="res://Assets/UITheme/UITheme.tres" id="1_ybrtl"]
+[ext_resource type="PackedScene" uid="uid://42l68atr28lw" path="res://Scenes/UI/CarSlotUI.tscn" id="2_ewe15"]
+[ext_resource type="PackedScene" uid="uid://cdypgsb12cjld" path="res://Scenes/UI/ShipBuildingNodeUI.tscn" id="3_j3yjm"]
+
+[node name="ShipBuildingUI" type="CanvasLayer"]
+script = ExtResource("1_w1rat")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ShipContainer" type="ScrollContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.881481
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ShipBox" type="HBoxContainer" parent="Control/ShipContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ShipBuildingNodeUI5" parent="Control/ShipContainer/ShipBox" instance=ExtResource("3_j3yjm")]
+layout_mode = 2
+
+[node name="CarSlotUI" parent="Control/ShipContainer/ShipBox" instance=ExtResource("2_ewe15")]
+layout_mode = 2
+
+[node name="ShipBuildingNodeUI" parent="Control/ShipContainer/ShipBox" instance=ExtResource("3_j3yjm")]
+layout_mode = 2
+
+[node name="CarSlotUI2" parent="Control/ShipContainer/ShipBox" instance=ExtResource("2_ewe15")]
+layout_mode = 2
+
+[node name="ShipBuildingNodeUI2" parent="Control/ShipContainer/ShipBox" instance=ExtResource("3_j3yjm")]
+layout_mode = 2
+
+[node name="CarSlotUI3" parent="Control/ShipContainer/ShipBox" instance=ExtResource("2_ewe15")]
+layout_mode = 2
+
+[node name="ShipBuildingNodeUI3" parent="Control/ShipContainer/ShipBox" instance=ExtResource("3_j3yjm")]
+layout_mode = 2
+
+[node name="CarSlotUI4" parent="Control/ShipContainer/ShipBox" instance=ExtResource("2_ewe15")]
+layout_mode = 2
+
+[node name="ShipBuildingNodeUI4" parent="Control/ShipContainer/ShipBox" instance=ExtResource("3_j3yjm")]
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.892593
+anchor_right = 0.99
+anchor_bottom = 0.982593
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Exit" type="Button" parent="Control/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("1_ybrtl")
+text = "Exit Build Mode"
+
+[connection signal="pressed" from="Control/Buttons/Exit" to="." method="_on_exit_pressed"]

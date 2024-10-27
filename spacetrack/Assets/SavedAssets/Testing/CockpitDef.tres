@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CockpitCar" load_steps=3 format=3 uid="uid://vgvkqttaenmn"]
+
+[ext_resource type="Texture2D" uid="uid://dh4v7px0rwdrh" path="res://Assets/Parts/FrontBase.png" id="1_j3etm"]
+[ext_resource type="Script" path="res://Scripts/Ship/CarResource/CockpitCar.gd" id="1_n85ls"]
+
+[resource]
+script = ExtResource("1_n85ls")
+topSpeed = 10.0
+acceleration = 50.0
+brakeSpeed = -50.0
+turnSpeed = 0.5
+index = 0
+carSprite = ExtResource("1_j3etm")
+radius = 5.0

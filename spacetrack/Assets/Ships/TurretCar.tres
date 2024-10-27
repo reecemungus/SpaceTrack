@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ShipCar" load_steps=5 format=3 uid="uid://cfwhdgk4nm5h5"]
+
+[ext_resource type="PackedScene" uid="uid://dmrglmvuc73u6" path="res://Scenes/Cars/Attachments/TurretGun.tscn" id="1_i8im1"]
+[ext_resource type="Script" path="res://Scripts/Ship/CarResource/ShipCar.gd" id="1_nmqkl"]
+[ext_resource type="Texture2D" uid="uid://bvu22m3k6w7vg" path="res://Assets/Parts/TurretBase.png" id="2_a20yp"]
+[ext_resource type="PackedScene" uid="uid://c67ut2acrh7oy" path="res://Scenes/Cars/CarInst.tscn" id="3_0bvff"]
+
+[resource]
+script = ExtResource("1_nmqkl")
+index = 0
+carSprite = ExtResource("2_a20yp")
+radius = 75.0
+instanceScene = ExtResource("3_0bvff")
+attachmentScene = ExtResource("1_i8im1")

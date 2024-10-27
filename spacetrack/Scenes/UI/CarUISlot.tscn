@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj60v723m8rqq"]
+
+[ext_resource type="Texture2D" uid="uid://bvu22m3k6w7vg" path="res://Assets/Parts/TurretBase.png" id="1_7icgw"]
+
+[node name="CarUISlot" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 32.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_7icgw")
+stretch_mode = 4

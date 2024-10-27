@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dovilldp2ie6m"]
+
+[ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_fnfrf"]
+[ext_resource type="Resource" uid="uid://vgvkqttaenmn" path="res://Assets/SavedAssets/Testing/CockpitDef.tres" id="2_i5tsd"]
+[ext_resource type="Shape2D" uid="uid://hnecxdq5hcyp" path="res://Assets/SavedAssets/CarShapeCollision.tres" id="3_pxoaq"]
+[ext_resource type="Texture2D" uid="uid://dh4v7px0rwdrh" path="res://Assets/Parts/FrontBase.png" id="4_cl3lw"]
+
+[node name="PlayerCockpit" type="CharacterBody2D"]
+script = ExtResource("1_fnfrf")
+cockPit = ExtResource("2_i5tsd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("3_pxoaq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_cl3lw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true

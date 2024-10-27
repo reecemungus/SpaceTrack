@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://ca757bwaa1d7i"]
+
+[ext_resource type="FontFile" uid="uid://bbl1p2h51jmv0" path="res://Assets/Fonts/Silkscreen-Regular.ttf" id="1_qe1nm"]
+
+[resource]
+base_font = ExtResource("1_qe1nm")

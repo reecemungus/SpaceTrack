@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://3tywl5h281bp"]
+
+[ext_resource type="Script" path="res://Scripts/Levels/ShipBuildingScene.gd" id="1_7a38f"]
+[ext_resource type="PackedScene" uid="uid://dbu38yu5yp61j" path="res://Scenes/PlayerShip.tscn" id="2_75cp7"]
+[ext_resource type="PackedScene" uid="uid://7ln8d3d37k1x" path="res://Scenes/UI/ShipBuildingUi.tscn" id="3_31hcu"]
+
+[node name="ShipBuildingScene" type="Node2D"]
+script = ExtResource("1_7a38f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="PlayerShip" parent="." instance=ExtResource("2_75cp7")]
+
+[node name="ShipBuildingUI" parent="." instance=ExtResource("3_31hcu")]

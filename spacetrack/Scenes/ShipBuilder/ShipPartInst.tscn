@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://354cysj6yd2y"]
+
+[ext_resource type="Texture2D" uid="uid://b8cx6veuhsfwk" path="res://Assets/Parts/HealingBase.png" id="1_reqgc"]
+[ext_resource type="Script" path="res://Scripts/ShipBuilder/ShipPart.gd" id="2_w5ov5"]
+[ext_resource type="Resource" uid="uid://b445gnx8amysr" path="res://Assets/SavedAssets/Testing/Car1.tres" id="3_dsn0w"]
+
+[node name="ShipPart" type="Sprite2D"]
+texture = ExtResource("1_reqgc")
+script = ExtResource("2_w5ov5")
+part = ExtResource("3_dsn0w")

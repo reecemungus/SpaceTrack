@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq8x7nieufgi2"]
+
+[ext_resource type="Theme" uid="uid://0pi5paux4ir4" path="res://Assets/UITheme/UITheme.tres" id="1_lx826"]
+[ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_spjfm"]
+[ext_resource type="Texture2D" uid="uid://dp0t3acffiyld" path="res://Assets/Menu.png" id="2_010ly"]
+
+[node name="MainMenuLevel" type="Node2D"]
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+script = ExtResource("1_spjfm")
+
+[node name="MainMenuUI" type="Control" parent="MainMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/MainMenuUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_010ly")
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="MainMenu/MainMenuUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.298958
+anchor_top = 0.330556
+anchor_right = 0.741146
+anchor_bottom = 0.475
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StartGame" type="Button" parent="MainMenu/MainMenuUI/ButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_lx826")
+text = "Start Game"
+
+[connection signal="pressed" from="MainMenu/MainMenuUI/ButtonsContainer/StartGame" to="MainMenu" method="_on_start_game_pressed"]

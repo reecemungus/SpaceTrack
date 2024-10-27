@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://1qckwnqwy6yu"]
+
+[ext_resource type="Texture2D" uid="uid://bemr3378ll0bb" path="res://Assets/Dock.png" id="1_l15r4"]
+[ext_resource type="Script" path="res://Scripts/Levels/ShipBuildingScene.gd" id="1_vlyus"]
+[ext_resource type="Theme" uid="uid://0pi5paux4ir4" path="res://Assets/UITheme/UITheme.tres" id="2_1yoan"]
+[ext_resource type="Texture2D" uid="uid://dcuclinub0akr" path="res://Assets/UIAssets/Arrow.png" id="2_qy0sj"]
+[ext_resource type="Script" path="res://Scripts/ShipBuilder/ShipBuilder.gd" id="5_ypfyq"]
+[ext_resource type="Resource" uid="uid://bd7fo6rc3krwa" path="res://Assets/Ships/PlayerShip.tres" id="6_d2qc4"]
+[ext_resource type="AudioStream" uid="uid://cafnwgk8he8d0" path="res://Assets/Audio/Attachment.wav" id="6_w61gp"]
+[ext_resource type="Texture2D" uid="uid://dh4v7px0rwdrh" path="res://Assets/Parts/FrontBase.png" id="7_4hqbc"]
+[ext_resource type="Script" path="res://Scripts/ShipBuilder/ShipParts.gd" id="7_b6lfr"]
+[ext_resource type="Script" path="res://Scripts/Ship/CarResource/ShipCar.gd" id="7_fu28o"]
+[ext_resource type="Resource" uid="uid://dqd3ixsxxs0jt" path="res://Assets/Ships/RailGunCar.tres" id="8_bqy74"]
+[ext_resource type="Resource" uid="uid://cfwhdgk4nm5h5" path="res://Assets/Ships/TurretCar.tres" id="9_jjduv"]
+
+[node name="ShipBuildingScene" type="Node2D"]
+script = ExtResource("1_vlyus")
+
+[node name="BackGround" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="BackGround"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_l15r4")
+
+[node name="ShipBuildingUI" type="CanvasLayer" parent="."]
+
+[node name="UIControl" type="Control" parent="ShipBuildingUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 322.0
+offset_top = 44.0
+offset_right = -322.0
+offset_bottom = -784.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShipBuildingUI/UIControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ShipBuildingUI/UIControl/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("2_1yoan")
+text = "editing ship"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShipBuildingUI/UIControl/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="FinishBuilding" type="Button" parent="ShipBuildingUI/UIControl/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_1yoan")
+text = "Finish"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="ShipBuilder" type="Node2D" parent="."]
+script = ExtResource("5_ypfyq")
+ship = ExtResource("6_d2qc4")
+swapSound = ExtResource("6_w61gp")
+carTypes = Array[ExtResource("7_fu28o")]([ExtResource("8_bqy74"), ExtResource("9_jjduv")])
+
+[node name="CockPit" type="Sprite2D" parent="ShipBuilder"]
+position = Vector2(75, 0)
+texture = ExtResource("7_4hqbc")
+
+[node name="ShipParts" type="Node2D" parent="ShipBuilder"]
+script = ExtResource("7_b6lfr")
+
+[node name="Selector" type="Node2D" parent="ShipBuilder"]
+
+[node name="Arrow" type="Sprite2D" parent="ShipBuilder/Selector"]
+position = Vector2(0, -65)
+texture = ExtResource("2_qy0sj")
+
+[connection signal="pressed" from="ShipBuildingUI/UIControl/VBoxContainer/HBoxContainer/FinishBuilding" to="." method="_on_finish_building_pressed"]

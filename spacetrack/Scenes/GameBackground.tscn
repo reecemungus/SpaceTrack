@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgnaxxw832bfg"]
+
+[sub_resource type="Gradient" id="Gradient_6h5vy"]
+offsets = PackedFloat32Array(0, 0.471795, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.0977783, 0.140625, 1, 0.0975342, 0, 0.132813, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bssrl"]
+noise_type = 2
+frequency = 0.001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wae80"]
+width = 1920
+height = 1080
+seamless = true
+seamless_blend_skirt = 0.5
+color_ramp = SubResource("Gradient_6h5vy")
+noise = SubResource("FastNoiseLite_bssrl")
+
+[node name="Background" type="CanvasLayer"]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("NoiseTexture2D_wae80")
+stretch_mode = 1

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://1uvwustco61e"]
+
+[ext_resource type="Script" path="res://Scripts/Ship/Attachments/BulletBase.gd" id="1_ryrv4"]
+[ext_resource type="Texture2D" uid="uid://8dbbqml5aycy" path="res://Assets/BulletParticles.png" id="2_aifwu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ym5yc"]
+radius = 11.1803
+
+[sub_resource type="Curve" id="Curve_2gny7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="TurretBullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ryrv4")
+bulletDamage = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ym5yc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_aifwu")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
+amount = 128
+lifetime = 0.2
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 5.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_2gny7")
+color = Color(0.192157, 1, 1, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

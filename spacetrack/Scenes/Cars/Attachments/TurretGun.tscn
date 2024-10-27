@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmrglmvuc73u6"]
+
+[ext_resource type="Script" path="res://Scripts/Ship/Attachments/GunBase.gd" id="1_ht0dk"]
+[ext_resource type="Texture2D" uid="uid://bsflapg5ju7pg" path="res://Assets/Parts/TurretAttachment.png" id="1_loswg"]
+[ext_resource type="Texture2D" uid="uid://jme2201a8ihm" path="res://Assets/Parts/TurretBarrel.png" id="2_nq0bi"]
+[ext_resource type="AudioStream" uid="uid://dp06oxov7e5n7" path="res://Assets/Audio/GunFire.wav" id="2_wms71"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iy105"]
+radius = 500.0
+
+[sub_resource type="Animation" id="Animation_ftypy"]
+resource_name = "FireAnim"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Barrel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.000125488, -0.25, 0, 0.25, 0, 7.52926e-05, -0.25, 0, 0.25, 0, 0.000125488, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Barrel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-20, -0.25, 0, 0.25, 0, -12, -0.25, 0, 0.25, 0, -20, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="Animation" id="Animation_i4mh3"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Barrel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.000125488, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Barrel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-20, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cunks"]
+_data = {
+"FireAnim": SubResource("Animation_ftypy"),
+"RESET": SubResource("Animation_i4mh3")
+}
+
+[node name="TurretGun" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ht0dk")
+fireSound = ExtResource("2_wms71")
+
+[node name="Range" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iy105")
+
+[node name="Turret" type="Sprite2D" parent="."]
+z_index = 1
+rotation = 1.57079
+texture = ExtResource("1_loswg")
+
+[node name="Barrel" type="Sprite2D" parent="Turret"]
+z_index = -1
+position = Vector2(0.000125488, -20)
+texture = ExtResource("2_nq0bi")
+
+[node name="ShootingPoint" type="Marker2D" parent="Turret/Barrel"]
+unique_name_in_owner = true
+position = Vector2(6.27438e-05, -10)
+rotation = -1.57079
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Turret"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_cunks")
+}
+speed_scale = 10.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

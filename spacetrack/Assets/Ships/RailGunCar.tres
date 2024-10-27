@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ShipCar" load_steps=5 format=3 uid="uid://dqd3ixsxxs0jt"]
+
+[ext_resource type="PackedScene" uid="uid://887idwibiwjp" path="res://Scenes/Cars/Attachments/RailGun.tscn" id="1_36ar6"]
+[ext_resource type="Script" path="res://Scripts/Ship/CarResource/ShipCar.gd" id="1_x4vag"]
+[ext_resource type="Texture2D" uid="uid://dagq02wcf64uw" path="res://Assets/Parts/RailgunBase.png" id="2_tyyxu"]
+[ext_resource type="PackedScene" uid="uid://c67ut2acrh7oy" path="res://Scenes/Cars/CarInst.tscn" id="3_622ha"]
+
+[resource]
+script = ExtResource("1_x4vag")
+index = 0
+carSprite = ExtResource("2_tyyxu")
+radius = 75.0
+instanceScene = ExtResource("3_622ha")
+attachmentScene = ExtResource("1_36ar6")

@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctp3wcmqovwh2"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/EnemyBase.gd" id="1_yeqhf"]
+[ext_resource type="Texture2D" uid="uid://bvdxni40emonu" path="res://Assets/Enemies/EnemyShip0.png" id="2_vt3o0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d82g6"]
+radius = 35.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5hlv"]
+atlas = ExtResource("2_vt3o0")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6blat"]
+atlas = ExtResource("2_vt3o0")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_knb6a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5hlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6blat")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="EnemyShip" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_yeqhf")
+moveSpeed = 4500.0
+health = 25.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d82g6")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_knb6a")
+autoplay = "default"
+frame_progress = 0.361659
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="AnimatedSprite"]
+position = Vector2(6.51598e-05, 18)
+rotation = -1.5708
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(-1, 0)
+gravity = Vector2(0, 0)
+initial_velocity_max = 20.0

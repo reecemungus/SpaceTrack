@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbu38yu5yp61j"]
+
+[ext_resource type="PackedScene" uid="uid://dovilldp2ie6m" path="res://Scenes/PlayerCockpit.tscn" id="1_1ccvn"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerShip.gd" id="1_if8up"]
+[ext_resource type="Script" path="res://Scripts/Train/CarResource/ShipCar.gd" id="2_vh44d"]
+[ext_resource type="Texture2D" uid="uid://csolmxxl0loiq" path="res://icon.svg" id="3_hxpl0"]
+[ext_resource type="PackedScene" uid="uid://c67ut2acrh7oy" path="res://Scenes/Cars/CarInst.tscn" id="4_8d2qd"]
+
+[sub_resource type="Resource" id="Resource_2xp6f"]
+script = ExtResource("2_vh44d")
+carSprite = ExtResource("3_hxpl0")
+radius = 150.0
+instanceScene = ExtResource("4_8d2qd")
+
+[node name="PlayerShip" type="Node" node_paths=PackedStringArray("cockpit")]
+script = ExtResource("1_if8up")
+cockpit = NodePath("PlayerCockpit")
+ship = Array[ExtResource("2_vh44d")]([SubResource("Resource_2xp6f"), SubResource("Resource_2xp6f"), SubResource("Resource_2xp6f")])
+
+[node name="PlayerCockpit" parent="." groups=["G_CockPit"] instance=ExtResource("1_1ccvn")]

@@ -1,0 +1,147 @@
+[gd_scene load_steps=10 format=3 uid="uid://qg535lf6ba60"]
+
+[ext_resource type="PackedScene" uid="uid://dbu38yu5yp61j" path="res://Scenes/PlayerShip.tscn" id="1_hqcdw"]
+[ext_resource type="Script" path="res://Scripts/Levels/SpaceLevel.gd" id="1_qdlnp"]
+[ext_resource type="PackedScene" uid="uid://ctp3wcmqovwh2" path="res://Scenes/Enemies/EnemyShip0.tscn" id="2_68a4y"]
+[ext_resource type="PackedScene" uid="uid://8u04sh22de5g" path="res://Scenes/Enemies/EnemyShip1.tscn" id="3_f5h8f"]
+[ext_resource type="PackedScene" uid="uid://cgnaxxw832bfg" path="res://Scenes/GameBackground.tscn" id="4_8oxpk"]
+[ext_resource type="Script" path="res://Scripts/UI/PlayerHUD.gd" id="5_ibk12"]
+[ext_resource type="Theme" uid="uid://0pi5paux4ir4" path="res://Assets/UITheme/UITheme.tres" id="5_pna2m"]
+[ext_resource type="PackedScene" uid="uid://c50asygqjudot" path="res://Scenes/Particles/StarsEffect.tscn" id="6_cpc5b"]
+
+[sub_resource type="Curve2D" id="Curve2D_w1svx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1010, 590, 0, 0, 0, 0, 1010, 590, 0, 0, 0, 0, 1010, -590, 0, 0, 0, 0, -1010, -590, 0, 0, 0, 0, -1010, 590)
+}
+point_count = 5
+
+[node name="SpaceLevel" type="Node2D"]
+script = ExtResource("1_qdlnp")
+enemies = Array[PackedScene]([ExtResource("2_68a4y"), ExtResource("2_68a4y"), ExtResource("2_68a4y"), ExtResource("3_f5h8f")])
+
+[node name="Background" parent="." instance=ExtResource("4_8oxpk")]
+
+[node name="LevelTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 30.0
+autostart = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.75
+autostart = true
+
+[node name="PlayerHUD" type="CanvasLayer" parent="."]
+script = ExtResource("5_ibk12")
+
+[node name="UI" type="Control" parent="PlayerHUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Health" type="VBoxContainer" parent="PlayerHUD/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.295833
+anchor_top = 0.025
+anchor_right = 0.704167
+anchor_bottom = 0.128704
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Health" type="Label" parent="PlayerHUD/UI/Health"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_pna2m")
+theme_override_font_sizes/font_size = 32
+text = "Health"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerHUD/UI/Health"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_pna2m")
+max_value = 250.0
+value = 125.0
+
+[node name="PlayerInfo" type="HBoxContainer" parent="PlayerHUD/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03125
+anchor_top = 0.891667
+anchor_right = 0.96875
+anchor_bottom = 0.97963
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Kills" type="VBoxContainer" parent="PlayerHUD/UI/PlayerInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Kills" type="Label" parent="PlayerHUD/UI/PlayerInfo/Kills"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("5_pna2m")
+theme_override_font_sizes/font_size = 32
+text = "Kills"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="PlayerHUD/UI/PlayerInfo/Kills"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("5_pna2m")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed" type="VBoxContainer" parent="PlayerHUD/UI/PlayerInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Speed" type="Label" parent="PlayerHUD/UI/PlayerInfo/Speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("5_pna2m")
+theme_override_font_sizes/font_size = 32
+text = "Speed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="PlayerHUD/UI/PlayerInfo/Speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("5_pna2m")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpawnPath" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_w1svx")
+
+[node name="SpawnPathFollower" type="PathFollow2D" parent="SpawnPath"]
+unique_name_in_owner = true
+position = Vector2(-1010, 590)
+
+[node name="StarsEffect" parent="SpawnPath" instance=ExtResource("6_cpc5b")]
+z_index = -1
+
+[node name="PlayerShip" parent="." instance=ExtResource("1_hqcdw")]
+
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

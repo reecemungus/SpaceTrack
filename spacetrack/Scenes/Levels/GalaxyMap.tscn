@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjgyr5geiw0n0"]
+
+[ext_resource type="Script" path="res://Scripts/GalaxyMap/BlipContainer.gd" id="1_aqujc"]
+[ext_resource type="Script" path="res://Scripts/GalaxyMap/GalaxyMap.gd" id="1_g55wb"]
+[ext_resource type="PackedScene" uid="uid://ca8clwro61dp" path="res://Scenes/GalaxyMap/BlipInst.tscn" id="3_5rpp6"]
+
+[sub_resource type="Gradient" id="Gradient_epk7p"]
+offsets = PackedFloat32Array(0, 0.0871795, 0.189744, 0.564103, 0.805128, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.235662, 2.94801e-07, 0, 1, 0.0664747, 2.97809e-07, 0.0363803, 1, 0.0784314, 0.0823529, 0.188235, 1, 0.243137, 0.192157, 0.282353, 1, 0.611765, 0.454902, 0.505882, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1f8ma"]
+noise_type = 2
+frequency = 0.001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5vrqe"]
+width = 1920
+height = 1080
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_epk7p")
+noise = SubResource("FastNoiseLite_1f8ma")
+
+[node name="GalaxyMap" type="Node2D"]
+script = ExtResource("1_g55wb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_5vrqe")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Blips" type="Node2D" parent="." node_paths=PackedStringArray("blips")]
+script = ExtResource("1_aqujc")
+blips = [NodePath("StartBlip"), NodePath("EndBlip")]
+
+[node name="StartBlip" parent="Blips" instance=ExtResource("3_5rpp6")]
+position = Vector2(-900, 0)
+
+[node name="EndBlip" parent="Blips" instance=ExtResource("3_5rpp6")]
+position = Vector2(900, 0)
