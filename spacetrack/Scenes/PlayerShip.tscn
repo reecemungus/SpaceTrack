@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerShip.gd" id="1_if8up"]
 
 [node name="PlayerShip" type="Node2D"]
+z_index = 9
 script = ExtResource("1_if8up")

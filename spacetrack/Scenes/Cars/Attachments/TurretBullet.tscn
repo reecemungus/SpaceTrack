@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://djn3uy02cy8r2"]
+[gd_scene load_steps=7 format=3 uid="uid://djn3uy02cy8r2"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/Attachments/BulletBase.gd" id="1_v5i77"]
+[ext_resource type="PackedScene" uid="uid://dfabsl6723fkm" path="res://Scenes/Particles/TurretImpact.tscn" id="2_51ouh"]
 [ext_resource type="Texture2D" uid="uid://8dbbqml5aycy" path="res://Assets/BulletParticles.png" id="2_jd5nr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ym5yc"]
@@ -20,6 +21,7 @@ collision_mask = 2
 script = ExtResource("1_v5i77")
 bulletSpeed = 500.0
 bulletSpread = 0.1
+impactParticle = ExtResource("2_51ouh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ym5yc")

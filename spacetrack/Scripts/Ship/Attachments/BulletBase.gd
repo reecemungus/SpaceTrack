@@ -12,6 +12,8 @@ var travelledDistance : float = 0.0
 
 @export var penetrateEnemies : bool = false
 
+@export var impactParticle : PackedScene
+
 func _ready() -> void:
 	rotation += randf_range(-bulletSpread, bulletSpread)
 
@@ -25,6 +27,8 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
+	ParticleManager.SpawnParticle(global_position, impactParticle)
+	
 	if body.has_method("OnDamage"):
 		body.OnDamage(bulletDamage)
 	

@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://1qckwnqwy6yu"]
+[gd_scene load_steps=16 format=3 uid="uid://1qckwnqwy6yu"]
 
 [ext_resource type="Texture2D" uid="uid://bemr3378ll0bb" path="res://Assets/Dock.png" id="1_l15r4"]
 [ext_resource type="Script" path="res://Scripts/Levels/ShipBuildingScene.gd" id="1_vlyus"]
 [ext_resource type="Theme" uid="uid://0pi5paux4ir4" path="res://Assets/UITheme/UITheme.tres" id="2_1yoan"]
+[ext_resource type="AudioStream" uid="uid://fg2tmpnjgv2s" path="res://Assets/Audio/UIClick.wav" id="2_pp1r0"]
 [ext_resource type="Texture2D" uid="uid://dcuclinub0akr" path="res://Assets/UIAssets/Arrow.png" id="2_qy0sj"]
 [ext_resource type="Script" path="res://Scripts/ShipBuilder/ShipBuilder.gd" id="5_ypfyq"]
 [ext_resource type="Resource" uid="uid://bd7fo6rc3krwa" path="res://Assets/Ships/PlayerShip.tres" id="6_d2qc4"]
@@ -10,12 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://dh4v7px0rwdrh" path="res://Assets/Parts/FrontBase.png" id="7_4hqbc"]
 [ext_resource type="Script" path="res://Scripts/ShipBuilder/ShipParts.gd" id="7_b6lfr"]
 [ext_resource type="Script" path="res://Scripts/Ship/CarResource/ShipCar.gd" id="7_fu28o"]
+[ext_resource type="AudioStream" uid="uid://6gwhx2jm5cd8" path="res://Assets/Audio/Select.wav" id="7_taehh"]
 [ext_resource type="Resource" uid="uid://dqd3ixsxxs0jt" path="res://Assets/Ships/RailGunCar.tres" id="8_bqy74"]
 [ext_resource type="Resource" uid="uid://cfwhdgk4nm5h5" path="res://Assets/Ships/TurretCar.tres" id="9_jjduv"]
 [ext_resource type="Resource" uid="uid://3lhk65g7lv8" path="res://Assets/Ships/HealCar.tres" id="10_5svjk"]
 
 [node name="ShipBuildingScene" type="Node2D"]
 script = ExtResource("1_vlyus")
+UIClickSound = ExtResource("2_pp1r0")
 
 [node name="BackGround" type="CanvasLayer" parent="."]
 layer = -1
@@ -30,19 +33,25 @@ texture = ExtResource("1_l15r4")
 
 [node name="ShipBuildingUI" type="CanvasLayer" parent="."]
 
-[node name="UIControl" type="Control" parent="ShipBuildingUI"]
+[node name="Control" type="Control" parent="ShipBuildingUI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 322.0
-offset_top = 44.0
-offset_right = -322.0
-offset_bottom = -784.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ShipBuildingUI/UIControl"]
+[node name="UIControl" type="Control" parent="ShipBuildingUI/Control"]
+layout_mode = 1
+anchor_left = 0.167708
+anchor_top = 0.0407407
+anchor_right = 0.832292
+anchor_bottom = 0.274074
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShipBuildingUI/Control/UIControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +60,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="ShipBuildingUI/UIControl/VBoxContainer"]
+[node name="Label" type="Label" parent="ShipBuildingUI/Control/UIControl/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -60,19 +69,39 @@ text = "editing ship"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ShipBuildingUI/UIControl/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ShipBuildingUI/Control/UIControl/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="FinishBuilding" type="Button" parent="ShipBuildingUI/UIControl/VBoxContainer/HBoxContainer"]
+[node name="FinishBuilding" type="Button" parent="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_1yoan")
 text = "Finish"
+
+[node name="Label" type="Label" parent="ShipBuildingUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.241667
+anchor_top = 0.737037
+anchor_right = 0.792708
+anchor_bottom = 0.890741
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_1yoan")
+theme_override_font_sizes/font_size = 24
+text = "A/D - cycle between ship parts
+e / enter / space - select / swap hovered part
+
+click finish to enter game"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ShipBuilder" type="Node2D" parent="."]
 script = ExtResource("5_ypfyq")
 ship = ExtResource("6_d2qc4")
 swapSound = ExtResource("6_w61gp")
+selectSound = ExtResource("7_taehh")
 carTypes = Array[ExtResource("7_fu28o")]([ExtResource("8_bqy74"), ExtResource("9_jjduv"), ExtResource("10_5svjk")])
 
 [node name="CockPit" type="Sprite2D" parent="ShipBuilder"]
@@ -94,4 +123,4 @@ texture = ExtResource("2_qy0sj")
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
-[connection signal="pressed" from="ShipBuildingUI/UIControl/VBoxContainer/HBoxContainer/FinishBuilding" to="." method="_on_finish_building_pressed"]
+[connection signal="pressed" from="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer/FinishBuilding" to="." method="_on_finish_building_pressed"]

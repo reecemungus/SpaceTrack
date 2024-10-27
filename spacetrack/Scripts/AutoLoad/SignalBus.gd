@@ -12,5 +12,7 @@ signal UpdateSpeed
 
 signal UpdateHealth
 
+signal IncRound
+
 func _ready() -> void:
 	pass

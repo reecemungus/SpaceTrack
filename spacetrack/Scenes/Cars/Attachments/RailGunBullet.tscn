@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://1uvwustco61e"]
+[gd_scene load_steps=6 format=3 uid="uid://1uvwustco61e"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/Attachments/BulletBase.gd" id="1_ryrv4"]
+[ext_resource type="PackedScene" uid="uid://b12clcsyl7cuo" path="res://Scenes/Particles/RailGunImpact.tscn" id="2_6hmqf"]
 [ext_resource type="Texture2D" uid="uid://8dbbqml5aycy" path="res://Assets/BulletParticles.png" id="2_aifwu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ym5yc"]
@@ -18,6 +19,7 @@ bulletSpeed = 1500.0
 bulletRange = 2500.0
 bulletDamage = 50.0
 penetrateEnemies = true
+impactParticle = ExtResource("2_6hmqf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ym5yc")

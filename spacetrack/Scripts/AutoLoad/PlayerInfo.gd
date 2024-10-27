@@ -9,6 +9,12 @@ var GalaxyMap : PackedScene
 
 ## PlayerShip
 
+var roundTime : int = 20
+var spawnInterval : float = 0.75
+
+var roundTimeMult : float = 1.25
+var spawnIntervalMult : float = 0.75
+
 var playerShip : ShipResource = preload("res://Assets/Ships/PlayerShip.tres")
 
 var playerKills : int = 0
@@ -30,3 +36,9 @@ var playerHealth : float = 250 :
 
 func _ready() -> void:
 	playerShip.ship = playerShip.ship.slice(0, 1)
+	
+	SignalBus.IncRound.connect(IncRound)
+
+func IncRound() -> void:
+	roundTime = roundTime * roundTimeMult
+	spawnInterval = spawnInterval * spawnIntervalMult

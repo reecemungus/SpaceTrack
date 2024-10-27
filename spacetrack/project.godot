@@ -21,6 +21,7 @@ AudioManager="*res://Scripts/AutoLoad/AudioManager.gd"
 GameStatics="*res://Scripts/AutoLoad/GameStatics.gd"
 PlayerInfo="*res://Scripts/AutoLoad/PlayerInfo.gd"
 SignalBus="*res://Scripts/AutoLoad/SignalBus.gd"
+ParticleManager="*res://Scripts/AutoLoad/ParticleManager.gd"
 
 [debug]
 

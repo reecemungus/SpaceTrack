@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dh4v7px0rwdrh" path="res://Assets/Parts/FrontBase.png" id="4_cl3lw"]
 
 [node name="PlayerCockpit" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_fnfrf")
 cockPit = ExtResource("2_i5tsd")
 

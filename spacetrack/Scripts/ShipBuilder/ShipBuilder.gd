@@ -2,7 +2,9 @@ extends Node2D
 class_name ShipBuilder
 
 @export var ship : ShipResource
+
 @export var swapSound : AudioStream
+@export var selectSound : AudioStream
 
 @export var carTypes : Array[ShipCar]
 
@@ -11,6 +13,7 @@ class_name ShipBuilder
 
 @onready var arrow : Node2D = get_node("./Arrow")
 var arrowTargetLocation : Vector2 = Vector2.ZERO
+var arrowTargetColor : Color = Color.WHITE
 
 var shipPartInst = preload("res://Scenes/ShipBuilder/ShipPartInst.tscn")
 
@@ -45,11 +48,16 @@ func _input(event: InputEvent) -> void:
 			return
 		
 		if !selectedPart: 
+			arrowTargetColor = Color.SKY_BLUE
 			selectedPart = shipParts.activePart
+			
+			AudioManager.playSound(selectSound)
+			
 			return
 
 func _physics_process(delta: float) -> void:
 	arrow.global_position = lerp(arrow.global_position, arrowTargetLocation, 0.1)
+	arrow.modulate = lerp(arrow.modulate, arrowTargetColor, 0.1)
 	
 	if shipParts.activePart:
 		selector.global_position = shipParts.activePart.global_position
@@ -93,3 +101,5 @@ func SwapParts() -> void:
 	
 	InstantiateShip()
 	shipParts.ComputeChildren()
+	
+	arrowTargetColor = Color.WHITE

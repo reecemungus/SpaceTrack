@@ -17,12 +17,19 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("SpeedUp"):
 		movement += cockPit.acceleration * delta
+		
+		if movement > 300:
+			movement = 300
+		
 		isAccelerating = true
-	#if Input.is_action_pressed("SpeedDown"):
-		#movement += cockPit.brakeSpeed * delta
+	
+	if Input.is_action_pressed("SpeedDown"):
+		movement += cockPit.brakeSpeed * delta
+	
 	if Input.is_action_pressed("TurnRight"):
 		if velocity.length() > 0.1:
 			global_rotation += cockPit.turnSpeed * delta
+	
 	if Input.is_action_pressed("TurnLeft"):
 		if velocity.length() > 0.1:
 			global_rotation -= cockPit.turnSpeed * delta

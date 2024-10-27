@@ -23,8 +23,8 @@ enemies = Array[PackedScene]([ExtResource("2_68a4y"), ExtResource("2_68a4y"), Ex
 
 [node name="LevelTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+process_callback = 0
 wait_time = 30.0
-autostart = true
 
 [node name="SpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -65,7 +65,7 @@ vertical_alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerHUD/UI/Health"]
 layout_mode = 2
-size_flags_vertical = 1
+size_flags_vertical = 3
 theme = ExtResource("5_pna2m")
 max_value = 250.0
 value = 125.0
@@ -106,6 +106,28 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Time" type="VBoxContainer" parent="PlayerHUD/UI/PlayerInfo"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="PlayerHUD/UI/PlayerInfo/Time"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("5_pna2m")
+theme_override_font_sizes/font_size = 32
+text = "Time Remaining"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="ProgressBar" parent="PlayerHUD/UI/PlayerInfo/Time"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("5_pna2m")
+theme_override_font_sizes/font_size = 32
+value = 100.0
+allow_lesser = true
+
 [node name="Speed" type="VBoxContainer" parent="PlayerHUD/UI/PlayerInfo"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -130,6 +152,34 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Controls" type="Control" parent="PlayerHUD/UI"]
+layout_mode = 1
+anchor_left = 0.0109375
+anchor_top = 0.0453704
+anchor_right = 0.289063
+anchor_bottom = 0.144444
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="PlayerHUD/UI/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_pna2m")
+theme_override_font_sizes/font_size = 32
+text = "W - Speed up
+a / d - turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SecondTimer" type="Timer" parent="PlayerHUD"]
+unique_name_in_owner = true
+autostart = true
+
 [node name="SpawnPath" type="Path2D" parent="."]
 unique_name_in_owner = true
 curve = SubResource("Curve2D_w1svx")
@@ -145,3 +195,4 @@ z_index = -1
 
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="PlayerHUD/SecondTimer" to="PlayerHUD" method="_on_second_timer_timeout"]

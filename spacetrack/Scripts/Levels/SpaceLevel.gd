@@ -3,8 +3,19 @@ class_name SpaceLevel
 
 @export var enemies : Array[PackedScene]
 
+func _init() -> void:
+	SignalBus.IncRound.emit()
+
 func _ready() -> void:
-	pass
+	var newLevelTimer := Timer.new()
+	
+	add_child(newLevelTimer)
+	newLevelTimer.timeout.connect(LevelTimeout)
+	newLevelTimer.timeout.connect(newLevelTimer.queue_free)
+	
+	newLevelTimer.start(PlayerInfo.roundTime)
+	
+	%SpawnTimer.wait_time = PlayerInfo.spawnInterval
 
 func _physics_process(delta: float) -> void:
 	%SpawnPath.global_position = PlayerInfo.playerShip.cockPit.global_position
@@ -20,5 +31,5 @@ func SpawnEnemy() -> void:
 func _on_spawn_timer_timeout() -> void:
 	SpawnEnemy()
 
-func _on_level_timer_timeout() -> void:
+func LevelTimeout() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Levels/ShipBuildingLevel.tscn")
