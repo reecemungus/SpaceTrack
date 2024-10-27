@@ -9,13 +9,20 @@ class_name ShipBuilder
 @onready var shipParts : ShipParts = get_node("./ShipParts")
 @onready var selector : Node2D = get_node("./Selector")
 
+@onready var arrow : Node2D = get_node("./Arrow")
+var arrowTargetLocation : Vector2 = Vector2.ZERO
+
 var shipPartInst = preload("res://Scenes/ShipBuilder/ShipPartInst.tscn")
 
 var selectedPart : ShipPart = null
 
 func _ready() -> void:
-	var newSegment : ShipCar
-	ship.ship.insert(ship.ship.size(), carTypes[randi_range(0, carTypes.size() - 1)])
+	var newSegment : ShipCar = ShipCar.new()
+	var copySeg = carTypes[randi_range(0, carTypes.size() - 1)]
+	
+	newSegment = copySeg.duplicate()
+	
+	ship.ship.insert(ship.ship.size(), newSegment)
 	
 	InstantiateShip()
 	
@@ -42,8 +49,12 @@ func _input(event: InputEvent) -> void:
 			return
 
 func _physics_process(delta: float) -> void:
+	arrow.global_position = lerp(arrow.global_position, arrowTargetLocation, 0.1)
+	
 	if shipParts.activePart:
 		selector.global_position = shipParts.activePart.global_position
+		
+		arrowTargetLocation = shipParts.activePart.global_position
 
 func InstantiateShip() -> void:
 	for car in shipParts.parts:

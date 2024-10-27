@@ -68,9 +68,6 @@ layout_mode = 2
 theme = ExtResource("2_1yoan")
 text = "Finish"
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-
 [node name="ShipBuilder" type="Node2D" parent="."]
 script = ExtResource("5_ypfyq")
 ship = ExtResource("6_d2qc4")
@@ -86,8 +83,14 @@ script = ExtResource("7_b6lfr")
 
 [node name="Selector" type="Node2D" parent="ShipBuilder"]
 
-[node name="Arrow" type="Sprite2D" parent="ShipBuilder/Selector"]
+[node name="Arrow" type="Node2D" parent="ShipBuilder"]
+
+[node name="ArrowSprite" type="Sprite2D" parent="ShipBuilder/Arrow"]
 position = Vector2(0, -65)
 texture = ExtResource("2_qy0sj")
+
+[node name="Camera2D" type="Camera2D" parent="ShipBuilder/Arrow"]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
 
 [connection signal="pressed" from="ShipBuildingUI/UIControl/VBoxContainer/HBoxContainer/FinishBuilding" to="." method="_on_finish_building_pressed"]

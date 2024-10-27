@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("1_x4vag")
-index = 0
+index = 2
 carSprite = ExtResource("2_tyyxu")
 radius = 75.0
 instanceScene = ExtResource("3_622ha")
