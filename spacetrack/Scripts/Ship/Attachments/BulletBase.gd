@@ -10,6 +10,8 @@ var travelledDistance : float = 0.0
 
 @export var bulletSpread : float = 0.0
 
+@export var penetrateEnemies : bool = false
+
 func _ready() -> void:
 	rotation += randf_range(-bulletSpread, bulletSpread)
 
@@ -23,7 +25,8 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
-	queue_free()
-	
 	if body.has_method("OnDamage"):
 		body.OnDamage(bulletDamage)
+	
+	if !penetrateEnemies:
+		queue_free()

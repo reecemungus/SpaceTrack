@@ -8,6 +8,11 @@ var targetRotation : float = 0
 
 var enemiesInRange : Array
 
+var canShoot : bool = false
+
+func _ready() -> void:
+	pass
+
 func _physics_process(delta: float) -> void:
 	enemiesInRange.clear()
 	enemiesInRange = get_overlapping_bodies()

@@ -96,6 +96,7 @@ libraries = {
 speed_scale = 10.0
 
 [node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.1
 autostart = true
 

@@ -15,15 +15,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("TurnLeft"):
 		if GetNeighboringElement(-1) != null: selectedElement = GetNeighboringElement(-1)
 
-#func _physics_process(delta: float) -> void:
-	#print(selectedElement)
-
 func GetTexChildren(input) -> Array[TextureRect]:
 	var sortedArray : Array[TextureRect]
 	
 	for i in range(0, input.size()):
-		print(i)
-		
 		if input[i] is TextureRect:
 			sortedArray.insert(i, input[i])
 	

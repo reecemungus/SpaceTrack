@@ -42,7 +42,6 @@ func InstantiateShip() -> void:
 			tempShip.add_child(newAtt)
 		
 		add_child(tempShip)
-		print(tempShip)
 	
 	isInstanced = true
 

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ShipCar" load_steps=5 format=3 uid="uid://3lhk65g7lv8"]
+
+[ext_resource type="PackedScene" uid="uid://bvv5mqit1hr6n" path="res://Scenes/Cars/Attachments/HealAtt.tscn" id="1_3npjf"]
+[ext_resource type="Script" path="res://Scripts/Ship/CarResource/ShipCar.gd" id="1_341kj"]
+[ext_resource type="Texture2D" uid="uid://b8cx6veuhsfwk" path="res://Assets/Parts/HealingBase.png" id="1_djgq6"]
+[ext_resource type="PackedScene" uid="uid://c67ut2acrh7oy" path="res://Scenes/Cars/CarInst.tscn" id="2_i45p3"]
+
+[resource]
+script = ExtResource("1_341kj")
+index = 0
+carSprite = ExtResource("1_djgq6")
+radius = 75.0
+instanceScene = ExtResource("2_i45p3")
+attachmentScene = ExtResource("1_3npjf")

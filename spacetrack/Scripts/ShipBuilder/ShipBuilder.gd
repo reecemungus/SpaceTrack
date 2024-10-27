@@ -81,9 +81,6 @@ func SwapParts() -> void:
 	var carA = ship.ship.find(selectedPart.part)
 	var carB = ship.ship.find(shipParts.activePart.part)
 	
-	print(carA)
-	print(carB)
-	
 	var temp = ship.ship[carA]
 	
 	ship.ship[carA] = ship.ship[carB]

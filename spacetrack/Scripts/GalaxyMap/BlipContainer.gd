@@ -73,5 +73,3 @@ func DrawLinesToClosest(blip : Node2D) -> void:
 		
 		blip.lines.insert(0, newLine)
 		blip.closestBlips[i][0].lines.insert(0, newLine)
-		
-		print(blip.closestBlips[i][0])

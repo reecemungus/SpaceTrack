@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvv5mqit1hr6n"]
+
+[ext_resource type="Script" path="res://Scripts/Ship/Attachments/HealAtt.gd" id="1_0kodp"]
+[ext_resource type="Texture2D" uid="uid://bi0kfmwwnr5ry" path="res://Assets/Parts/HealingAttachment.png" id="2_7loh3"]
+
+[sub_resource type="Animation" id="Animation_nji60"]
+resource_name = "Idle"
+length = 5.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, 6.28319, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 5)
+}
+
+[sub_resource type="Animation" id="Animation_b4ilx"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s2738"]
+_data = {
+"Idle": SubResource("Animation_nji60"),
+"RESET": SubResource("Animation_b4ilx")
+}
+
+[node name="HealAtt" type="Node2D"]
+script = ExtResource("1_0kodp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s2738")
+}
+autoplay = "Idle"
+speed_scale = 0.5
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_7loh3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
