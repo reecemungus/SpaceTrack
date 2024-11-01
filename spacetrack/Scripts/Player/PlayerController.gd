@@ -15,7 +15,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	isAccelerating = false
 	
-	if Input.is_action_pressed("SpeedUp"):
+	if PlayerInfo.playerAccelerating:
 		movement += cockPit.acceleration * delta
 		
 		if movement > 300:
@@ -23,16 +23,35 @@ func _physics_process(delta: float) -> void:
 		
 		isAccelerating = true
 	
-	if Input.is_action_pressed("SpeedDown"):
+	if PlayerInfo.playerDecelerating:
 		movement += cockPit.brakeSpeed * delta
 	
-	if Input.is_action_pressed("TurnRight"):
+	if PlayerInfo.playerTurningLeft:
+		if velocity.length() > 0.1:
+			global_rotation -= cockPit.turnSpeed * delta
+	
+	if PlayerInfo.playerTurningRight:
 		if velocity.length() > 0.1:
 			global_rotation += cockPit.turnSpeed * delta
 	
-	if Input.is_action_pressed("TurnLeft"):
-		if velocity.length() > 0.1:
-			global_rotation -= cockPit.turnSpeed * delta
+	#if Input.is_action_pressed("SpeedUp"):
+		#movement += cockPit.acceleration * delta
+		#
+		#if movement > 300:
+			#movement = 300
+		#
+		#isAccelerating = true
+	
+	#if Input.is_action_pressed("SpeedDown"):
+		#movement += cockPit.brakeSpeed * delta
+	
+	#if Input.is_action_pressed("TurnRight"):
+		#if velocity.length() > 0.1:
+			#global_rotation += cockPit.turnSpeed * delta
+	#
+	#if Input.is_action_pressed("TurnLeft"):
+		#if velocity.length() > 0.1:
+			#global_rotation -= cockPit.turnSpeed * delta
 	
 	if !isAccelerating:
 		movement = move_toward(movement, 0, (cockPit.brakeSpeed * -1) * delta) 

@@ -7,6 +7,14 @@ extends Node
 
 var GalaxyMap : PackedScene
 
+## PlayerInput
+
+var playerAccelerating : bool = false
+var playerDecelerating : bool = false
+
+var playerTurningLeft : bool = false
+var playerTurningRight : bool = false
+
 ## PlayerShip
 
 var roundTime : int = 20

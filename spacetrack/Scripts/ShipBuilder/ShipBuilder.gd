@@ -30,30 +30,34 @@ func _ready() -> void:
 	InstantiateShip()
 	
 	shipParts.OnReady()
+	
+	SignalBus.OnTurnRightPressed.connect(RightPressed)
+	SignalBus.OnTurnLeftPressed.connect(LeftPressed)
+	
+	SignalBus.OnSelectPressed.connect(SelectPressed)
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("TurnRight"):
-		if shipParts.SelectNeighbor(-1) : shipParts.activePart = shipParts.SelectNeighbor(-1)
-		return
-	if event.is_action_pressed("TurnLeft"):
-		if shipParts.SelectNeighbor(1) : shipParts.activePart = shipParts.SelectNeighbor(1)
-		return
-	if event.is_action_pressed("Select"):
-		if selectedPart: 
-			SwapParts()
-			selectedPart = null
-			
-			AudioManager.playSound(swapSound)
-			
-			return
+func RightPressed() -> void:
+	if shipParts.SelectNeighbor(-1) : shipParts.activePart = shipParts.SelectNeighbor(-1)
+
+func LeftPressed() -> void:
+	if shipParts.SelectNeighbor(1) : shipParts.activePart = shipParts.SelectNeighbor(1)
+
+func SelectPressed() -> void:
+	if selectedPart: 
+		SwapParts()
+		selectedPart = null
 		
-		if !selectedPart: 
-			arrowTargetColor = Color.SKY_BLUE
-			selectedPart = shipParts.activePart
-			
-			AudioManager.playSound(selectSound)
-			
-			return
+		AudioManager.playSound(swapSound)
+		
+		return
+	
+	if !selectedPart: 
+		arrowTargetColor = Color.SKY_BLUE
+		selectedPart = shipParts.activePart
+		
+		AudioManager.playSound(selectSound)
+		
+		return
 
 func _physics_process(delta: float) -> void:
 	arrow.global_position = lerp(arrow.global_position, arrowTargetLocation, 0.1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://qg535lf6ba60"]
+[gd_scene load_steps=15 format=3 uid="uid://qg535lf6ba60"]
 
 [ext_resource type="PackedScene" uid="uid://dbu38yu5yp61j" path="res://Scenes/PlayerShip.tscn" id="1_hqcdw"]
 [ext_resource type="Script" path="res://Scripts/Levels/SpaceLevel.gd" id="1_qdlnp"]
@@ -7,7 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://cgnaxxw832bfg" path="res://Scenes/GameBackground.tscn" id="4_8oxpk"]
 [ext_resource type="Script" path="res://Scripts/UI/PlayerHUD.gd" id="5_ibk12"]
 [ext_resource type="Theme" uid="uid://0pi5paux4ir4" path="res://Assets/UITheme/UITheme.tres" id="5_pna2m"]
+[ext_resource type="Script" path="res://Scripts/ScreenControls.gd" id="6_5hlaf"]
 [ext_resource type="PackedScene" uid="uid://c50asygqjudot" path="res://Scenes/Particles/StarsEffect.tscn" id="6_cpc5b"]
+[ext_resource type="Texture2D" uid="uid://coytbayqrw72f" path="res://Assets/UIAssets/LeftArrow.png" id="8_88x6c"]
+[ext_resource type="Texture2D" uid="uid://bvrqt0gw6t5nk" path="res://Assets/UIAssets/RightArrow.png" id="9_xoqik"]
+[ext_resource type="Texture2D" uid="uid://dhqvcmmy1ej3g" path="res://Assets/UIAssets/Plus.png" id="10_25h8t"]
+[ext_resource type="Texture2D" uid="uid://drykrf8aiiwfj" path="res://Assets/UIAssets/Minus.png" id="11_bnps0"]
 
 [sub_resource type="Curve2D" id="Curve2D_w1svx"]
 _data = {
@@ -34,6 +39,82 @@ autostart = true
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 script = ExtResource("5_ibk12")
 
+[node name="Controls" type="Control" parent="PlayerHUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_5hlaf")
+
+[node name="SpeedControls" type="Control" parent="PlayerHUD/Controls"]
+layout_mode = 1
+anchor_left = 0.0864583
+anchor_top = 0.757407
+anchor_right = 0.913542
+anchor_bottom = 0.862963
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerHUD/Controls/SpeedControls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00440806
+anchor_right = 0.995591
+anchor_bottom = 0.999996
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TurnContainer" type="HBoxContainer" parent="PlayerHUD/Controls/SpeedControls/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TurnLeft" type="TextureButton" parent="PlayerHUD/Controls/SpeedControls/HBoxContainer/TurnContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("5_pna2m")
+action_mode = 0
+texture_normal = ExtResource("8_88x6c")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="TurnRight" type="TextureButton" parent="PlayerHUD/Controls/SpeedControls/HBoxContainer/TurnContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("5_pna2m")
+action_mode = 0
+texture_normal = ExtResource("9_xoqik")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayerHUD/Controls/SpeedControls/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpeedContainer" type="HBoxContainer" parent="PlayerHUD/Controls/SpeedControls/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SpeedUp" type="TextureButton" parent="PlayerHUD/Controls/SpeedControls/HBoxContainer/SpeedContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("5_pna2m")
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("10_25h8t")
+texture_pressed = ExtResource("11_bnps0")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
 [node name="UI" type="Control" parent="PlayerHUD"]
 layout_mode = 3
 anchors_preset = 15
@@ -41,6 +122,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Health" type="VBoxContainer" parent="PlayerHUD/UI"]
 layout_mode = 1
@@ -51,6 +133,7 @@ anchor_right = 0.704167
 anchor_bottom = 0.128704
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -66,6 +149,7 @@ vertical_alignment = 1
 [node name="HealthBar" type="ProgressBar" parent="PlayerHUD/UI/Health"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme = ExtResource("5_pna2m")
 max_value = 250.0
 value = 125.0
@@ -79,12 +163,14 @@ anchor_right = 0.96875
 anchor_bottom = 0.97963
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Kills" type="VBoxContainer" parent="PlayerHUD/UI/PlayerInfo"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Kills" type="Label" parent="PlayerHUD/UI/PlayerInfo/Kills"]
 layout_mode = 2
@@ -108,6 +194,7 @@ vertical_alignment = 1
 
 [node name="Time" type="VBoxContainer" parent="PlayerHUD/UI/PlayerInfo"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Time" type="Label" parent="PlayerHUD/UI/PlayerInfo/Time"]
 layout_mode = 2
@@ -123,6 +210,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 theme = ExtResource("5_pna2m")
 theme_override_font_sizes/font_size = 32
 value = 100.0
@@ -131,6 +219,7 @@ allow_lesser = true
 [node name="Speed" type="VBoxContainer" parent="PlayerHUD/UI/PlayerInfo"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Speed" type="Label" parent="PlayerHUD/UI/PlayerInfo/Speed"]
 layout_mode = 2
@@ -160,21 +249,28 @@ anchor_right = 0.289063
 anchor_bottom = 0.144444
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="PlayerHUD/UI/Controls"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = -0.214957
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 1.21496
+offset_top = 23.0003
+offset_bottom = -23.0003
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_pna2m")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 text = "W - Speed up
-a / d - turn"
+a / d - turn
+or
+Use OnScreen Controls"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="SecondTimer" type="Timer" parent="PlayerHUD"]
 unique_name_in_owner = true
@@ -195,4 +291,9 @@ z_index = -1
 
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="button_down" from="PlayerHUD/Controls/SpeedControls/HBoxContainer/TurnContainer/TurnLeft" to="PlayerHUD/Controls" method="_on_turn_left_button_down"]
+[connection signal="button_up" from="PlayerHUD/Controls/SpeedControls/HBoxContainer/TurnContainer/TurnLeft" to="PlayerHUD/Controls" method="_on_turn_left_button_up"]
+[connection signal="button_down" from="PlayerHUD/Controls/SpeedControls/HBoxContainer/TurnContainer/TurnRight" to="PlayerHUD/Controls" method="_on_turn_right_button_down"]
+[connection signal="button_up" from="PlayerHUD/Controls/SpeedControls/HBoxContainer/TurnContainer/TurnRight" to="PlayerHUD/Controls" method="_on_turn_right_button_up"]
+[connection signal="pressed" from="PlayerHUD/Controls/SpeedControls/HBoxContainer/SpeedContainer/SpeedUp" to="PlayerHUD/Controls" method="_on_speed_up_pressed"]
 [connection signal="timeout" from="PlayerHUD/SecondTimer" to="PlayerHUD" method="_on_second_timer_timeout"]

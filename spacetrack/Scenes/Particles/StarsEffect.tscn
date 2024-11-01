@@ -23,6 +23,7 @@ metadata/_snap_enabled = true
 [node name="Stars0" type="CPUParticles2D" parent="."]
 amount = 128
 lifetime = 10.0
+preprocess = 30.0
 texture = ExtResource("1_ehd2e")
 emission_shape = 3
 emission_rect_extents = Vector2(2000, 1250)
@@ -36,6 +37,7 @@ color_ramp = SubResource("Gradient_2fnh5")
 [node name="Stars1" type="CPUParticles2D" parent="."]
 amount = 128
 lifetime = 10.0
+preprocess = 30.0
 texture = ExtResource("2_3r510")
 emission_shape = 3
 emission_rect_extents = Vector2(2000, 1250)
@@ -49,6 +51,7 @@ color_ramp = SubResource("Gradient_2fnh5")
 [node name="Stars2" type="CPUParticles2D" parent="."]
 amount = 128
 lifetime = 10.0
+preprocess = 30.0
 texture = ExtResource("3_b0rgk")
 emission_shape = 3
 emission_rect_extents = Vector2(2000, 1250)
@@ -62,6 +65,7 @@ color_ramp = SubResource("Gradient_2fnh5")
 [node name="Stars3" type="CPUParticles2D" parent="."]
 amount = 128
 lifetime = 10.0
+preprocess = 30.0
 texture = ExtResource("4_wlp0h")
 emission_shape = 3
 emission_rect_extents = Vector2(2000, 1250)
@@ -75,6 +79,7 @@ color_ramp = SubResource("Gradient_2fnh5")
 [node name="Stars4" type="CPUParticles2D" parent="."]
 amount = 128
 lifetime = 10.0
+preprocess = 30.0
 texture = ExtResource("5_wd6oc")
 emission_shape = 3
 emission_rect_extents = Vector2(2000, 1250)
@@ -88,6 +93,7 @@ color_ramp = SubResource("Gradient_2fnh5")
 [node name="Stars5" type="CPUParticles2D" parent="."]
 amount = 128
 lifetime = 10.0
+preprocess = 30.0
 texture = ExtResource("6_fjxgu")
 emission_shape = 3
 emission_rect_extents = Vector2(2000, 1250)
@@ -101,6 +107,7 @@ color_ramp = SubResource("Gradient_2fnh5")
 [node name="Stars6" type="CPUParticles2D" parent="."]
 amount = 128
 lifetime = 10.0
+preprocess = 30.0
 texture = ExtResource("7_7bn7o")
 emission_shape = 3
 emission_rect_extents = Vector2(2000, 1250)

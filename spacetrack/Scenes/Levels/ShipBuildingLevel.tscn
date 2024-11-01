@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://1qckwnqwy6yu"]
+[gd_scene load_steps=17 format=3 uid="uid://1qckwnqwy6yu"]
 
 [ext_resource type="Texture2D" uid="uid://bemr3378ll0bb" path="res://Assets/Dock.png" id="1_l15r4"]
 [ext_resource type="Script" path="res://Scripts/Levels/ShipBuildingScene.gd" id="1_vlyus"]
 [ext_resource type="Theme" uid="uid://0pi5paux4ir4" path="res://Assets/UITheme/UITheme.tres" id="2_1yoan"]
 [ext_resource type="AudioStream" uid="uid://fg2tmpnjgv2s" path="res://Assets/Audio/UIClick.wav" id="2_pp1r0"]
 [ext_resource type="Texture2D" uid="uid://dcuclinub0akr" path="res://Assets/UIAssets/Arrow.png" id="2_qy0sj"]
+[ext_resource type="Script" path="res://Scripts/ShipBuilder/ShipBuildingUI.gd" id="4_qe23w"]
 [ext_resource type="Script" path="res://Scripts/ShipBuilder/ShipBuilder.gd" id="5_ypfyq"]
 [ext_resource type="Resource" uid="uid://bd7fo6rc3krwa" path="res://Assets/Ships/PlayerShip.tres" id="6_d2qc4"]
 [ext_resource type="AudioStream" uid="uid://cafnwgk8he8d0" path="res://Assets/Audio/Attachment.wav" id="6_w61gp"]
@@ -32,6 +33,7 @@ grow_vertical = 2
 texture = ExtResource("1_l15r4")
 
 [node name="ShipBuildingUI" type="CanvasLayer" parent="."]
+script = ExtResource("4_qe23w")
 
 [node name="Control" type="Control" parent="ShipBuildingUI"]
 layout_mode = 3
@@ -44,11 +46,23 @@ grow_vertical = 2
 [node name="UIControl" type="Control" parent="ShipBuildingUI/Control"]
 layout_mode = 1
 anchor_left = 0.167708
-anchor_top = 0.0407407
+anchor_top = 0.0296296
 anchor_right = 0.832292
 anchor_bottom = 0.274074
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="FinishBuilding" type="Button" parent="ShipBuildingUI/Control/UIControl"]
+layout_mode = 2
+anchor_left = 0.105016
+anchor_top = 3.60606
+anchor_right = 0.94906
+anchor_bottom = 3.89394
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("2_1yoan")
+text = "Start Game"
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ShipBuildingUI/Control/UIControl"]
@@ -67,16 +81,37 @@ size_flags_vertical = 6
 theme = ExtResource("2_1yoan")
 text = "editing ship"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ShipBuildingUI/Control/UIControl/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 alignment = 1
 
-[node name="FinishBuilding" type="Button" parent="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer"]
+[node name="LeftCycle" type="Button" parent="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_1yoan")
-text = "Finish"
+text = "Left"
+
+[node name="LeftMargin" type="MarginContainer" parent="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Select" type="Button" parent="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_1yoan")
+text = "Select Part"
+
+[node name="RightMargin" type="MarginContainer" parent="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightCycle" type="Button" parent="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_1yoan")
+text = "Right"
 
 [node name="Label" type="Label" parent="ShipBuildingUI/Control"]
 layout_mode = 1
@@ -123,4 +158,7 @@ texture = ExtResource("2_qy0sj")
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
-[connection signal="pressed" from="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer/FinishBuilding" to="." method="_on_finish_building_pressed"]
+[connection signal="pressed" from="ShipBuildingUI/Control/UIControl/FinishBuilding" to="." method="_on_finish_building_pressed"]
+[connection signal="pressed" from="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer/LeftCycle" to="ShipBuildingUI" method="_on_left_cycle_pressed"]
+[connection signal="pressed" from="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer/Select" to="ShipBuildingUI" method="_on_select_pressed"]
+[connection signal="pressed" from="ShipBuildingUI/Control/UIControl/VBoxContainer/HBoxContainer/RightCycle" to="ShipBuildingUI" method="_on_right_cycle_pressed"]

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bqcd04rte1sw7" path="res://Scenes/Particles/Enemy1Death.tscn" id="3_uuxks"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d82g6"]
-radius = 85.0
+radius = 48.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_70us7"]
 atlas = ExtResource("2_shdfc")
@@ -33,6 +33,9 @@ animations = [{
 [node name="EnemyShip" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 3
+motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294967280
 script = ExtResource("1_8qmjs")
 moveSpeed = 1500.0
 health = 250.0

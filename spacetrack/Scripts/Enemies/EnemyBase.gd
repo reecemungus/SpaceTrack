@@ -21,6 +21,10 @@ func _physics_process(delta: float) -> void:
 	global_rotation = lerp_angle(global_rotation, velocity.angle(), 0.01)
 	
 	move_and_slide()
+	
+	if global_position.distance_to(target.global_position) > 1500:
+		print("culled")
+		queue_free()
 
 func OnDamage(damage : float) -> void:
 	health -= damage

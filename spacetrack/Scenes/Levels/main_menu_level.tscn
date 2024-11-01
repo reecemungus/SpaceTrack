@@ -9,6 +9,7 @@
 [node name="MainMenuLevel" type="Node2D"]
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
+layer = -1
 script = ExtResource("1_spjfm")
 UIClickSound = ExtResource("2_jrwur")
 

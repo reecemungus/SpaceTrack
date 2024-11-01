@@ -1,20 +1,87 @@
-[gd_resource type="Resource" script_class="ShipResource" load_steps=8 format=3 uid="uid://bd7fo6rc3krwa"]
+[gd_resource type="Resource" script_class="ShipResource" load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Ship/ShipResource/Ship.gd" id="1_rddqm"]
 [ext_resource type="Script" path="res://Scripts/Ship/CarResource/ShipCar.gd" id="2_2ehf1"]
-[ext_resource type="Resource" uid="uid://cfwhdgk4nm5h5" path="res://Assets/Ships/TurretCar.tres" id="3_gm5bp"]
-[ext_resource type="PackedScene" uid="uid://887idwibiwjp" path="res://Scenes/Cars/Attachments/RailGun.tscn" id="4_edw0p"]
-[ext_resource type="Texture2D" uid="uid://dagq02wcf64uw" path="res://Assets/Parts/RailgunBase.png" id="5_6v3hd"]
-[ext_resource type="PackedScene" uid="uid://c67ut2acrh7oy" path="res://Scenes/Cars/CarInst.tscn" id="6_3lep5"]
+[ext_resource type="PackedScene" path="res://Scenes/Cars/Attachments/TurretGun.tscn" id="3_fmwpu"]
+[ext_resource type="Texture2D" path="res://Assets/Parts/TurretBase.png" id="4_xio27"]
+[ext_resource type="PackedScene" path="res://Scenes/Cars/CarInst.tscn" id="6_3lep5"]
+[ext_resource type="PackedScene" path="res://Scenes/Cars/Attachments/RailGun.tscn" id="6_bo6o8"]
+[ext_resource type="Texture2D" path="res://Assets/Parts/RailgunBase.png" id="7_esqkf"]
+[ext_resource type="PackedScene" path="res://Scenes/Cars/Attachments/HealAtt.tscn" id="8_eibxf"]
+[ext_resource type="Texture2D" path="res://Assets/Parts/HealingBase.png" id="9_5176n"]
 
-[sub_resource type="Resource" id="Resource_t2xs0"]
+[sub_resource type="Resource" id="Resource_sdij1"]
 script = ExtResource("2_2ehf1")
-index = 1
-carSprite = ExtResource("5_6v3hd")
+index = 0
+carSprite = ExtResource("4_xio27")
 radius = 75.0
 instanceScene = ExtResource("6_3lep5")
-attachmentScene = ExtResource("4_edw0p")
+attachmentScene = ExtResource("3_fmwpu")
+
+[sub_resource type="Resource" id="Resource_clnud"]
+script = ExtResource("2_2ehf1")
+index = 1
+carSprite = ExtResource("7_esqkf")
+radius = 75.0
+instanceScene = ExtResource("6_3lep5")
+attachmentScene = ExtResource("6_bo6o8")
+
+[sub_resource type="Resource" id="Resource_rkrop"]
+script = ExtResource("2_2ehf1")
+index = 2
+carSprite = ExtResource("7_esqkf")
+radius = 75.0
+instanceScene = ExtResource("6_3lep5")
+attachmentScene = ExtResource("6_bo6o8")
+
+[sub_resource type="Resource" id="Resource_ju6l5"]
+script = ExtResource("2_2ehf1")
+index = 3
+carSprite = ExtResource("4_xio27")
+radius = 75.0
+instanceScene = ExtResource("6_3lep5")
+attachmentScene = ExtResource("3_fmwpu")
+
+[sub_resource type="Resource" id="Resource_58htr"]
+script = ExtResource("2_2ehf1")
+index = 4
+carSprite = ExtResource("7_esqkf")
+radius = 75.0
+instanceScene = ExtResource("6_3lep5")
+attachmentScene = ExtResource("6_bo6o8")
+
+[sub_resource type="Resource" id="Resource_xtvdp"]
+script = ExtResource("2_2ehf1")
+index = 5
+carSprite = ExtResource("4_xio27")
+radius = 75.0
+instanceScene = ExtResource("6_3lep5")
+attachmentScene = ExtResource("3_fmwpu")
+
+[sub_resource type="Resource" id="Resource_sdos5"]
+script = ExtResource("2_2ehf1")
+index = 6
+carSprite = ExtResource("4_xio27")
+radius = 75.0
+instanceScene = ExtResource("6_3lep5")
+attachmentScene = ExtResource("3_fmwpu")
+
+[sub_resource type="Resource" id="Resource_d2wl6"]
+script = ExtResource("2_2ehf1")
+index = 7
+carSprite = ExtResource("9_5176n")
+radius = 75.0
+instanceScene = ExtResource("6_3lep5")
+attachmentScene = ExtResource("8_eibxf")
+
+[sub_resource type="Resource" id="Resource_ieqd2"]
+script = ExtResource("2_2ehf1")
+index = 8
+carSprite = ExtResource("9_5176n")
+radius = 75.0
+instanceScene = ExtResource("6_3lep5")
+attachmentScene = ExtResource("8_eibxf")
 
 [resource]
 script = ExtResource("1_rddqm")
-ship = Array[ExtResource("2_2ehf1")]([ExtResource("3_gm5bp"), SubResource("Resource_t2xs0")])
+ship = Array[ExtResource("2_2ehf1")]([SubResource("Resource_sdij1"), SubResource("Resource_clnud"), SubResource("Resource_rkrop"), SubResource("Resource_ju6l5"), SubResource("Resource_58htr"), SubResource("Resource_xtvdp"), SubResource("Resource_sdos5"), SubResource("Resource_d2wl6"), SubResource("Resource_ieqd2")])

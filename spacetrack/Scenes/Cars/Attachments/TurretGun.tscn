@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Ship/Attachments/GunBase.gd" id="1_ht0dk"]
 [ext_resource type="Texture2D" uid="uid://bsflapg5ju7pg" path="res://Assets/Parts/TurretAttachment.png" id="1_loswg"]
+[ext_resource type="AudioStream" uid="uid://dk4f8277x7p3u" path="res://Assets/Audio/GunFireAlt.wav" id="2_4wli6"]
 [ext_resource type="Texture2D" uid="uid://jme2201a8ihm" path="res://Assets/Parts/TurretBarrel.png" id="2_nq0bi"]
-[ext_resource type="AudioStream" uid="uid://dp06oxov7e5n7" path="res://Assets/Audio/GunFire.wav" id="2_wms71"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iy105"]
 radius = 500.0
@@ -68,7 +68,7 @@ _data = {
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_ht0dk")
-fireSound = ExtResource("2_wms71")
+fireSound = ExtResource("2_4wli6")
 
 [node name="Range" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iy105")
