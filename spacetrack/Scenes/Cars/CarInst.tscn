@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c67ut2acrh7oy"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/CarInst.gd" id="1_0gepp"]
-[ext_resource type="Texture2D" uid="uid://bvu22m3k6w7vg" path="res://Assets/Parts/TurretBase.png" id="2_5o7ao"]
+[ext_resource type="Texture2D" uid="uid://mne76dgvdc4h" path="res://Assets/PartVectors/Cannon/Base/CannonBase_0.svg" id="2_0dk0q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8aoor"]
 radius = 55.0
@@ -11,7 +11,8 @@ script = ExtResource("1_0gepp")
 
 [node name="CarSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-texture = ExtResource("2_5o7ao")
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_0dk0q")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 unique_name_in_owner = true

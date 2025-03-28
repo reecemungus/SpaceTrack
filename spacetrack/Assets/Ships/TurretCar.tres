@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://dmrglmvuc73u6" path="res://Scenes/Cars/Attachments/TurretGun.tscn" id="1_i8im1"]
 [ext_resource type="Script" path="res://Scripts/Ship/CarResource/ShipCar.gd" id="1_nmqkl"]
-[ext_resource type="Texture2D" uid="uid://bvu22m3k6w7vg" path="res://Assets/Parts/TurretBase.png" id="2_a20yp"]
+[ext_resource type="Texture2D" uid="uid://mne76dgvdc4h" path="res://Assets/PartVectors/Cannon/Base/CannonBase_0.svg" id="2_ldp3s"]
 [ext_resource type="PackedScene" uid="uid://c67ut2acrh7oy" path="res://Scenes/Cars/CarInst.tscn" id="3_0bvff"]
 
 [resource]
 script = ExtResource("1_nmqkl")
 index = 1
-carSprite = ExtResource("2_a20yp")
+carSprite = ExtResource("2_ldp3s")
 radius = 75.0
 instanceScene = ExtResource("3_0bvff")
 attachmentScene = ExtResource("1_i8im1")

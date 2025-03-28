@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="ShipResource" load_steps=19 format=3]
+[gd_resource type="Resource" script_class="ShipResource" load_steps=19 format=3 uid="uid://dtg42ys2v5dll"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/ShipResource/Ship.gd" id="1_rddqm"]
 [ext_resource type="Script" path="res://Scripts/Ship/CarResource/ShipCar.gd" id="2_2ehf1"]
-[ext_resource type="PackedScene" path="res://Scenes/Cars/Attachments/TurretGun.tscn" id="3_fmwpu"]
-[ext_resource type="Texture2D" path="res://Assets/Parts/TurretBase.png" id="4_xio27"]
-[ext_resource type="PackedScene" path="res://Scenes/Cars/CarInst.tscn" id="6_3lep5"]
-[ext_resource type="PackedScene" path="res://Scenes/Cars/Attachments/RailGun.tscn" id="6_bo6o8"]
-[ext_resource type="Texture2D" path="res://Assets/Parts/RailgunBase.png" id="7_esqkf"]
-[ext_resource type="PackedScene" path="res://Scenes/Cars/Attachments/HealAtt.tscn" id="8_eibxf"]
-[ext_resource type="Texture2D" path="res://Assets/Parts/HealingBase.png" id="9_5176n"]
+[ext_resource type="PackedScene" uid="uid://dmrglmvuc73u6" path="res://Scenes/Cars/Attachments/TurretGun.tscn" id="3_fmwpu"]
+[ext_resource type="Texture2D" uid="uid://bvu22m3k6w7vg" path="res://Assets/Parts/TurretBase.png" id="4_xio27"]
+[ext_resource type="PackedScene" uid="uid://c67ut2acrh7oy" path="res://Scenes/Cars/CarInst.tscn" id="6_3lep5"]
+[ext_resource type="PackedScene" uid="uid://887idwibiwjp" path="res://Scenes/Cars/Attachments/RailGun.tscn" id="6_bo6o8"]
+[ext_resource type="Texture2D" uid="uid://dagq02wcf64uw" path="res://Assets/Parts/RailgunBase.png" id="7_esqkf"]
+[ext_resource type="PackedScene" uid="uid://bvv5mqit1hr6n" path="res://Scenes/Cars/Attachments/HealAtt.tscn" id="8_eibxf"]
+[ext_resource type="Texture2D" uid="uid://b8cx6veuhsfwk" path="res://Assets/Parts/HealingBase.png" id="9_5176n"]
 
 [sub_resource type="Resource" id="Resource_sdij1"]
 script = ExtResource("2_2ehf1")

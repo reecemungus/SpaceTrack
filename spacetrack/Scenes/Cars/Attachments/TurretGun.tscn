@@ -1,15 +1,16 @@
 [gd_scene load_steps=9 format=3 uid="uid://dmrglmvuc73u6"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/Attachments/GunBase.gd" id="1_ht0dk"]
-[ext_resource type="Texture2D" uid="uid://bsflapg5ju7pg" path="res://Assets/Parts/TurretAttachment.png" id="1_loswg"]
 [ext_resource type="AudioStream" uid="uid://dk4f8277x7p3u" path="res://Assets/Audio/GunFireAlt.wav" id="2_4wli6"]
-[ext_resource type="Texture2D" uid="uid://jme2201a8ihm" path="res://Assets/Parts/TurretBarrel.png" id="2_nq0bi"]
+[ext_resource type="Texture2D" uid="uid://bm3q3lax0mc6g" path="res://Assets/PartVectors/Cannon/Turret/CannonTurret_0.svg" id="3_ui3j6"]
+[ext_resource type="Texture2D" uid="uid://bnh8bpvo4lyl7" path="res://Assets/PartVectors/Cannon/Gun/CannonGun_0.svg" id="4_48qbn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iy105"]
 radius = 500.0
 
 [sub_resource type="Animation" id="Animation_ftypy"]
 resource_name = "FireAnim"
+step = 0.25
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -18,7 +19,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.000125488, -0.25, 0, 0.25, 0, 7.52926e-05, -0.25, 0, 0.25, 0, 0.000125488, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(400, -0.25, 0, 0.25, 0, 300, -0.25, 0, 0.25, 0, 400, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 tracks/1/type = "bezier"
@@ -29,7 +30,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-20, -0.25, 0, 0.25, 0, -12, -0.25, 0, 0.25, 0, -20, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 
@@ -43,7 +44,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.000125488, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(400, -0.0005, 0, 0.0005, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
@@ -54,7 +55,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-20, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
 "times": PackedFloat32Array(0)
 }
 
@@ -75,17 +76,17 @@ shape = SubResource("CircleShape2D_iy105")
 
 [node name="Turret" type="Sprite2D" parent="."]
 z_index = 1
-rotation = 1.57079
-texture = ExtResource("1_loswg")
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_ui3j6")
 
 [node name="Barrel" type="Sprite2D" parent="Turret"]
 z_index = -1
-position = Vector2(0.000125488, -20)
-texture = ExtResource("2_nq0bi")
+position = Vector2(400, 0)
+texture = ExtResource("4_48qbn")
 
 [node name="ShootingPoint" type="Marker2D" parent="Turret/Barrel"]
 unique_name_in_owner = true
-position = Vector2(6.27438e-05, -10)
+position = Vector2(200, 0)
 rotation = -1.57079
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Turret"]
